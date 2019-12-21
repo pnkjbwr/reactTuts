@@ -1,14 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-let clock = function(){
-  return <h2>Time Now : {new Date().toLocaleTimeString()}</h2>
+
+//Creating first Component
+function Cartoon(anyvarname)
+{
+  return <h1>Hello  {anyvarname.name} on {anyvarname.show}</h1>
+}
+
+//Repeating Cartoon Composnent
+function Show(){
+  return <div>
+    <Cartoon name='Pikachoo' show='Pokemon'/>
+    <Cartoon name='Jasmin' show='Alladin'/>
+  </div>
+}
+
+class MyComponent extends React.Component{
+  render(){
+    return <h1>Hello Mr {this.props.name}</h1>
+  }
 }
 
 
-setInterval(() => {
-  ReactDOM.render(
-   clock(),
+ReactDOM.render(
+  <Show/>, //Component Defined using Function
+  //<MyComponent name='Pankaj'/>, //Component Defined using Class
     document.getElementById('root')
   );
-}, 1000);

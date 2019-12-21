@@ -1,30 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+//States and Changing Values at Runtime
+//Props = Values From Out of Components
+//State = Values From inside of Components
 
-//Creating first Component
-function Cartoon(anyvarname)
-{
-  return <h1>Hello  {anyvarname.name} on {anyvarname.show}</h1>
-}
+class Inc extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {counter : 0}
+  }
 
-//Repeating Cartoon Composnent
-function Show(){
-  return <div>
-    <Cartoon name='Pikachoo' show='Pokemon'/>
-    <Cartoon name='Jasmin' show='Alladin'/>
-  </div>
-}
+  increment = (e) => {
+    e.preventDefault();
+    this.setState({
+      counter : this.state.counter + 1
+    });
+  }
 
-class MyComponent extends React.Component{
   render(){
-    return <h1>Hello Mr {this.props.name}</h1>
+    return <a href="https://google.com" onClick={this.increment}>Valie is  = {this.state.counter}</a>
   }
 }
 
-
 ReactDOM.render(
-  <Show/>, //Component Defined using Function
-  //<MyComponent name='Pankaj'/>, //Component Defined using Class
-    document.getElementById('root')
-  );
+  <Inc />,
+  document.getElementById('root')
+)

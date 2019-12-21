@@ -1,29 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//States and Changing Values at Runtime
-//Props = Values From Out of Components
-//State = Values From inside of Components
+function Message(props){
+  if (props.value) {
+    //Value = True
+    return <h1>This is 1st Msg</h1>
+  }
+  //Value = False
+  return <h1>This is 2nd Msg</h1>
 
-class Inc extends React.Component{
+}
+
+class Btn extends React.Component{
+
   constructor(props){
     super(props);
-    this.state = {counter : 0}
+    this.state = {value:true,clickedCount:1}
   }
+  
 
-  increment = (e) => {
-    e.preventDefault();
+  Clicked = () => {
     this.setState({
-      counter : this.state.counter + 1
-    });
-  }
+      value : !this.state.value, //Switching values True or False
+      clickedCount : this.state.clickedCount+1 //increasing Values of Clicked Count
+    })
+  } 
 
   render(){
-    return <a href="https://google.com" onClick={this.increment}>Valie is  = {this.state.counter}</a>
+    return (
+      <div>
+          <h3>Total Clicked : {this.state.clickedCount}</h3>
+          <button onClick={this.Clicked}>Change Message</button>
+          <Message value={this.state.value} />
+      </div>
+    );
   }
 }
 
+
 ReactDOM.render(
-  <Inc />,
-  document.getElementById('root')
-)
+<Btn />,
+document.getElementById('root')
+);

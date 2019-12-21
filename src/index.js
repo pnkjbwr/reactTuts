@@ -1,44 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Message(props){
-  if (props.value) {
-    //Value = True
-    return <h1>This is 1st Msg</h1>
-  }
-  //Value = False
-  return <h1>This is 2nd Msg</h1>
 
+function ToonsList(props){
+  const list = props.cartoons
+
+  return <ul>{
+        //Seperating any Array Values in Separate List using map() function
+        list.map((list,index) => <li key={index}>{list}</li>)
+  }
+  </ul>
 }
 
-class Btn extends React.Component{
 
-  constructor(props){
-    super(props);
-    this.state = {value:true,clickedCount:1}
-  }
-  
-
-  Clicked = () => {
-    this.setState({
-      value : !this.state.value, //Switching values True or False
-      clickedCount : this.state.clickedCount+1 //increasing Values of Clicked Count
-    })
-  } 
-
-  render(){
-    return (
-      <div>
-          <h3>Total Clicked : {this.state.clickedCount}</h3>
-          <button onClick={this.Clicked}>Change Message</button>
-          <Message value={this.state.value} />
-      </div>
-    );
-  }
-}
-
+const cartoonsList = ['Pikachoo','Allaadin','Doremon','Tom']
 
 ReactDOM.render(
-<Btn />,
-document.getElementById('root')
+  <ToonsList cartoons={cartoonsList}/>,
+  document.getElementById('root')
 );
